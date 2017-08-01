@@ -30,12 +30,6 @@ function endsWith(allOfIt, endsWith) {
 	return (allOfIt.length - allOfIt.indexOf(endsWith)) === endsWith.length;
 }
 
-function resetRegex(regexes) {
-	for (var regex in regexes) {
-		regexes[regex].lastIndex = 0;
-	}
-}
-
 var regexes = {
 	leftParens: /\(/g,
 	rightParens: /\)/g,
@@ -61,14 +55,11 @@ var delimiters = {
 var encoder = {};
 
 encoder.encode = function(name) {
-	// global regexes store state - so restore it before encoding
-	resetRegex(regexes);
-
 	var encoded = name;
 
 	// encode or convert camelCase attributes unless in list of attributes
 	// where case matters
-	if (!caseMattersAttributes[encoded] && regexes.camelCase.test(encoded)) {
+	if (!caseMattersAttributes[encoded] && encoded.match(regexes.camelCase)) {
 		// encode uppercase characters in new bindings
 		// - on:fooBar, fooBar:to, fooBar:from, fooBar:bind
 		if (startsWith(encoded, 'on:') || endsWith(encoded, ':to') || endsWith(encoded, ':from') || endsWith(encoded, ':bind')) {
@@ -103,9 +94,6 @@ encoder.encode = function(name) {
 };
 
 encoder.decode = function(name) {
-	// global regexes store state - so restore it before decoding
-	resetRegex(regexes);
-
 	var decoded = name;
 
 	// decode left parentheses
@@ -122,7 +110,7 @@ encoder.decode = function(name) {
 		.replace(delimiters.replaceSpace, ' ');
 
 	// decode uppercase characters in new bindings
-	if (!caseMattersAttributes[decoded] && regexes.uppercaseDelimiterThenChar.test(decoded)) {
+	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
 		if (startsWith(decoded, 'on:') || endsWith(decoded, ':to') || endsWith(decoded, ':from') || endsWith(decoded, ':bind')) {
 			decoded = decoded
 				.replace(regexes.uppercaseDelimiterThenChar, function(match, char) {
