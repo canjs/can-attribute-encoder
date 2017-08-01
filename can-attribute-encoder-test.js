@@ -14,7 +14,8 @@ QUnit.test('encoding / decoding', function() {
 		'(foo bar)': ':lp:foo:s:bar:rp:',
 		'(foo/bar)': ':lp:foo:f:bar:rp:',
 		'{foo bar}': ':lb:foo:s:bar:rb:',
-		'{foo/bar}': ':lb:foo:f:bar:rb:'
+		'{foo/bar}': ':lb:foo:f:bar:rb:',
+		'{$^foobar}': ':lb::d::c:foobar:rb:'
 	};
 
 	for (var key in encodings) {
@@ -36,7 +37,8 @@ QUnit.test('encoded values should work with setAttribute', function() {
 			'(foo bar)',
 			'(foo/bar)',
 			'{foo bar}',
-			'{foo/bar}'
+			'{foo/bar}',
+			'{$^foobar}'
 		];
 
 	attributes.forEach(function(attr) {

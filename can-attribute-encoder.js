@@ -39,7 +39,9 @@ var regexes = {
 	forwardSlash: /\//g,
 	space: /\s/g,
 	uppercase: /[A-Z]/g,
-	uppercaseDelimiterThenChar: /:u:([a-z])/g
+	uppercaseDelimiterThenChar: /:u:([a-z])/g,
+	caret: /\^/g,
+	dollar: /\$/g
 };
 
 var delimiters = {
@@ -49,7 +51,9 @@ var delimiters = {
 	replaceLeftParens: ':lp:',
 	replaceRightParens: ':rp:',
 	replaceLeftBrace: ':lb:',
-	replaceRightBrace: ':rb:'
+	replaceRightBrace: ':rb:',
+	replaceCaret: ':c:',
+	replaceDollar: ':d:'
 };
 
 var encoder = {};
@@ -88,7 +92,11 @@ encoder.encode = function(name) {
 		// encode left braces
 		.replace(regexes.leftBrace, delimiters.replaceLeftBrace)
 		// encode left braces
-		.replace(regexes.rightBrace, delimiters.replaceRightBrace);
+		.replace(regexes.rightBrace, delimiters.replaceRightBrace)
+		// encode ^
+		.replace(regexes.caret, delimiters.replaceCaret)
+		// encode $
+		.replace(regexes.dollar, delimiters.replaceDollar);
 
 	return encoded;
 };
@@ -107,7 +115,11 @@ encoder.decode = function(name) {
 		// decode forward slashes
 		.replace(delimiters.replaceForwardSlash, '/')
 		// decode spaces
-		.replace(delimiters.replaceSpace, ' ');
+		.replace(delimiters.replaceSpace, ' ')
+		// decode ^
+		.replace(delimiters.replaceCaret, '^')
+		//decode $
+		.replace(delimiters.replaceDollar, '$');
 
 	// decode uppercase characters in new bindings
 	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
