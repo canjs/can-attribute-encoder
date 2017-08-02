@@ -1,6 +1,19 @@
 var namespace = require('can-namespace');
 var dev = require('can-util/js/dev/dev');
 
+/**
+ * @module {{}} can-attribute-encoder can-attribute-encoder
+ * @parent can-infrastructure
+ * @package ./package.json
+ *
+ * Encode and decode attribute names.
+ *
+ * @option {Object} An object with the methods:
+ * [can-attribute-encoder.encode] and [can-attribute-encoder.decode].
+ *
+ */
+
+
 function each(items, callback){
 	for ( var i = 0; i < items.length; i++ ) {
 		callback(items[i], i);
@@ -58,6 +71,27 @@ var delimiters = {
 
 var encoder = {};
 
+/**
+ * @function can-attribute-encoder.encode encode
+ * @parent can-attribute-encoder
+ * @description Encode an attribute name
+ *
+ * @signature `encoder.encode(attributeName)`
+ *
+ * Note: specific encoding may change, but encoded attributes
+ * can always be decoded using [can-attribute-encoder.decode].
+ *
+ * @body
+ *
+ * ```js
+ * var encodedAttributeName = encoder.encode("{(^$foo/bar baz)}");
+ * div.setAttribute(encodedAttributeName, "attribute value");
+ * ```
+ *
+ * @param {String} attributeName The attribute name.
+ * @return {String} The encoded attribute name.
+ *
+ */
 encoder.encode = function(name) {
 	var encoded = name;
 
@@ -101,6 +135,23 @@ encoder.encode = function(name) {
 	return encoded;
 };
 
+/**
+ * @function can-attribute-encoder.decode decode
+ * @parent can-attribute-encoder
+ * @description Decode an attribute name encoded by [can-attribute-encoder.encode]
+ * @signature `encoder.decode(attributeName)`
+ *
+ * @body
+ *
+ * ```js
+ * encoder.decode(attributeName); // -> "{(^$foo/bar baz)}"
+ *
+ * ```
+ *
+ * @param {String} attributeName The encoded attribute name.
+ * @return {String} The decoded attribute name.
+ *
+ */
 encoder.decode = function(name) {
 	var decoded = name;
 
