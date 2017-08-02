@@ -1,6 +1,6 @@
 {
   "name": "can-attribute-encoder",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Encode / decode attributes for DOM elements",
   "homepage": "https://canjs.com/",
   "repository": {
