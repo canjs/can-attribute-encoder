@@ -55,7 +55,8 @@ var regexes = {
 	uppercaseDelimiterThenChar: /:u:([a-z])/g,
 	caret: /\^/g,
 	dollar: /\$/g,
-	at: /@/g
+	at: /@/g,
+	star: /\*/g,
 };
 
 var delimiters = {
@@ -68,7 +69,8 @@ var delimiters = {
 	replaceRightBrace: ':rb:',
 	replaceCaret: ':c:',
 	replaceDollar: ':d:',
-	replaceAt: ':at:'
+	replaceAt: ':at:',
+	replaceAsterisk: ':star:'
 };
 
 var encoder = {};
@@ -134,7 +136,9 @@ encoder.encode = function(name) {
 		// encode $
 		.replace(regexes.dollar, delimiters.replaceDollar)
 		// encode @
-		.replace(regexes.at, delimiters.replaceAt);
+		.replace(regexes.at, delimiters.replaceAt)
+		// encode @
+		.replace(regexes.star, delimiters.replaceAsterisk);
 
 	return encoded;
 };
@@ -176,7 +180,9 @@ encoder.decode = function(name) {
 		//decode $
 		.replace(delimiters.replaceDollar, '$')
 		//decode @
-		.replace(delimiters.replaceAt, '@');
+		.replace(delimiters.replaceAt, '@')
+		//decode *
+		.replace(delimiters.replaceAsterisk, '*');
 
 	// decode uppercase characters in new bindings
 	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
