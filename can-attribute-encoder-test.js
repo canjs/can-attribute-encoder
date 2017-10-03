@@ -1,7 +1,7 @@
 var QUnit = require('steal-qunit');
 var encoder = require('./can-attribute-encoder');
 var clone = require('steal-clone');
-var dev = require('can-util/js/dev/dev');
+var dev = require('can-log/dev/dev');
 
 QUnit.test('encoding / decoding', function() {
 	var encoded,
