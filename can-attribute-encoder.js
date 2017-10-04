@@ -1,5 +1,5 @@
 var namespace = require('can-namespace');
-var dev = require('can-util/js/dev/dev');
+var dev = require('can-log/dev/dev');
 
 /**
  * @module {{}} can-attribute-encoder can-attribute-encoder
