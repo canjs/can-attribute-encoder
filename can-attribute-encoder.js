@@ -3,7 +3,8 @@ var dev = require('can-log/dev/dev');
 
 /**
  * @module {{}} can-attribute-encoder can-attribute-encoder
- * @parent can-infrastructure
+ * @parent can-dom-utilities
+ * @collection can-infrastructure
  * @package ./package.json
  *
  * Encode and decode attribute names.
