@@ -160,6 +160,16 @@ encoder.encode = function(name) {
 encoder.decode = function(name) {
 	var decoded = name;
 
+	// decode uppercase characters in new bindings
+	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
+		if (startsWith(decoded, 'on:') || endsWith(decoded, ':to') || endsWith(decoded, ':from') || endsWith(decoded, ':bind')) {
+			decoded = decoded
+				.replace(regexes.uppercaseDelimiterThenChar, function(match, char) {
+					return char.toUpperCase();
+				});
+		}
+	}
+
 	// decode left parentheses
 	decoded = decoded.replace(delimiters.replaceLeftParens, '(')
 		// decode right parentheses
@@ -178,16 +188,6 @@ encoder.decode = function(name) {
 		.replace(delimiters.replaceDollar, '$')
 		//decode @
 		.replace(delimiters.replaceAt, '@');
-
-	// decode uppercase characters in new bindings
-	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
-		if (startsWith(decoded, 'on:') || endsWith(decoded, ':to') || endsWith(decoded, ':from') || endsWith(decoded, ':bind')) {
-			decoded = decoded
-				.replace(regexes.uppercaseDelimiterThenChar, function(match, char) {
-					return char.toUpperCase();
-				});
-		}
-	}
 
 	return decoded;
 };

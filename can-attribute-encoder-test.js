@@ -8,6 +8,7 @@ QUnit.test('encoding / decoding', function() {
 		encodings = {
 		'on:fooBar': 'on:foo:u:bar',
 		'on:fooBar:by:bazQuz': 'on:foo:u:bar:by:baz:u:quz',
+		'vm:sProp:to': 'vm:s:u:prop:to',
 		'fooBar:to': 'foo:u:bar:to',
 		'fooBar:from': 'foo:u:bar:from',
 		'fooBar:bind': 'foo:u:bar:bind',
@@ -32,6 +33,7 @@ QUnit.test('encoded values should work with setAttribute', function() {
 		attributes = [
 			'on:fooBar',
 			'on:fooBar:by:bazQuz',
+			'vm:sProp:to',
 			'fooBar:to',
 			'fooBar:from',
 			'fooBar:bind',
@@ -89,4 +91,3 @@ QUnit.test('should throw if can-namespace.encoder is already defined', function(
 		start();
 	});
 });
-
