@@ -13,9 +13,8 @@
     "url": "http://bitovi.com"
   },
   "scripts": {
-    "preversion": "npm test && npm run build",
-    "version": "git commit -am \"Update version number\" && git checkout -b release && git add -f dist/",
-    "postversion": "git push --tags && git checkout master && git branch -D release && git push",
+    "preversion": "npm test",
+    "postpublish": "git push --tags && git push",
     "testee": "testee test.html --browsers firefox",
     "test": "npm run detect-cycle && npm run jshint && npm run testee",
     "jshint": "jshint ./*.js --config",
@@ -46,7 +45,6 @@
     "jshint": "^2.9.5",
     "steal": "^1.5.6",
     "steal-qunit": "^1.0.1",
-    "steal-tools": "^1.7.0",
     "testee": "^0.7.0"
   },
   "license": "MIT"
