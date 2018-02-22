@@ -10,6 +10,8 @@ QUnit.test('encoding / decoding', function() {
 		'on:fooBar:by:bazQuz': 'on:foo:u:bar:by:baz:u:quz',
 		'vm:sProp:to': 'vm:s:u:prop:to',
 		'fooBar:to': 'foo:u:bar:to',
+		'FooBar:to': ':u:foo:u:bar:to',
+		'Foobar:to': ':u:foobar:to',
 		'fooBar:from': 'foo:u:bar:from',
 		'fooBar:bind': 'foo:u:bar:bind',
 		'(foo bar)': ':lp:foo:s:bar:rp:',
@@ -23,8 +25,8 @@ QUnit.test('encoding / decoding', function() {
 	for (var key in encodings) {
 		encoded = encoder.encode(key);
 
-		QUnit.equal(encoded, encodings[key], 'encoding');
-		QUnit.equal(encoder.decode(encoded), key, 'decoding');
+		QUnit.equal(encoded, encodings[key], 'encoding ' + key);
+		QUnit.equal(encoder.decode(encoded), key, 'decoding ' + encoded);
 	}
 });
 
@@ -35,6 +37,8 @@ QUnit.test('encoded values should work with setAttribute', function() {
 			'on:fooBar:by:bazQuz',
 			'vm:sProp:to',
 			'fooBar:to',
+			'FooBar:to',
+			'Foobar:to',
 			'fooBar:from',
 			'fooBar:bind',
 			'(foo bar)',

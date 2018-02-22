@@ -49,7 +49,7 @@ var regexes = {
 	rightParens: /\)/g,
 	leftBrace: /\{/g,
 	rightBrace: /\}/g,
-	camelCase: /([a-z])([A-Z])/g,
+	camelCase: /([a-z]|^)([A-Z])/g,
 	forwardSlash: /\//g,
 	space: /\s/g,
 	uppercase: /[A-Z]/g,
