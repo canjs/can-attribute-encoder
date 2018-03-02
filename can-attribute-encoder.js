@@ -108,7 +108,7 @@ encoder.encode = function(name) {
 				.replace(regexes.uppercase, function(char) {
 					return delimiters.prependUppercase + char.toLowerCase();
 				});
-		} else {
+		} else if(startsWith(encoded, '(') || startsWith(encoded, '{')) {
 			// convert uppercase characters in older bindings to kebab-case
 			// - {fooBar}, (fooBar), {(fooBar)}
 			encoded = encoded.replace(regexes.camelCase, camelCaseToSpinalCase);
