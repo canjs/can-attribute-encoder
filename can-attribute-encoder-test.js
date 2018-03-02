@@ -6,6 +6,7 @@ var dev = require('can-log/dev/dev');
 QUnit.test('encoding / decoding', function() {
 	var encoded,
 		encodings = {
+		// bound
 		'on:fooBar': 'on:foo:u:bar',
 		'on:fooBar:by:bazQuz': 'on:foo:u:bar:by:baz:u:quz',
 		'vm:sProp:to': 'vm:s:u:prop:to',
@@ -14,6 +15,13 @@ QUnit.test('encoding / decoding', function() {
 		'Foobar:to': ':u:foobar:to',
 		'fooBar:from': 'foo:u:bar:from',
 		'fooBar:bind': 'foo:u:bar:bind',
+
+		// not bound
+		'DISABLED': 'DISABLED',
+		'fooBar': 'fooBar',
+		'FooBar': 'FooBar',
+
+		// legacy
 		'(foo bar)': ':lp:foo:s:bar:rp:',
 		'(foo/bar)': ':lp:foo:f:bar:rp:',
 		'{foo bar}': ':lb:foo:s:bar:rb:',
@@ -33,6 +41,7 @@ QUnit.test('encoding / decoding', function() {
 QUnit.test('encoded values should work with setAttribute', function() {
 	var div = document.createElement('div'),
 		attributes = [
+			// bound
 			'on:fooBar',
 			'on:fooBar:by:bazQuz',
 			'vm:sProp:to',
@@ -41,6 +50,13 @@ QUnit.test('encoded values should work with setAttribute', function() {
 			'Foobar:to',
 			'fooBar:from',
 			'fooBar:bind',
+
+			// not bound
+			'DISABLED',
+			'fooBar',
+			'FooBar',
+
+			// legacy
 			'(foo bar)',
 			'(foo/bar)',
 			'{foo bar}',
