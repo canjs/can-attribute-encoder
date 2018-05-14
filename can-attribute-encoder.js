@@ -103,7 +103,13 @@ encoder.encode = function(name) {
 	if (!caseMattersAttributes[encoded] && encoded.match(regexes.camelCase)) {
 		// encode uppercase characters in new bindings
 		// - on:fooBar, fooBar:to, fooBar:from, fooBar:bind
-		if (startsWith(encoded, 'on:') || endsWith(encoded, ':to') || endsWith(encoded, ':from') || endsWith(encoded, ':bind')) {
+		if (
+			startsWith(encoded, 'on:') ||
+			endsWith(encoded, ':to') ||
+			endsWith(encoded, ':from') ||
+			endsWith(encoded, ':bind') ||
+			endsWith(encoded, ':raw')
+		) {
 			encoded = encoded
 				.replace(regexes.uppercase, function(char) {
 					return delimiters.prependUppercase + char.toLowerCase();
@@ -162,7 +168,13 @@ encoder.decode = function(name) {
 
 	// decode uppercase characters in new bindings
 	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
-		if (startsWith(decoded, 'on:') || endsWith(decoded, ':to') || endsWith(decoded, ':from') || endsWith(decoded, ':bind')) {
+		if (
+			startsWith(decoded, 'on:') ||
+			endsWith(decoded, ':to') ||
+			endsWith(decoded, ':from') ||
+			endsWith(decoded, ':bind') ||
+			endsWith(decoded, ':raw')
+		) {
 			decoded = decoded
 				.replace(regexes.uppercaseDelimiterThenChar, function(match, char) {
 					return char.toUpperCase();

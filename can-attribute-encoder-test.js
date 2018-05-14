@@ -20,6 +20,7 @@ QUnit.test('encoding / decoding', function() {
 		'DISABLED': 'DISABLED',
 		'fooBar': 'fooBar',
 		'FooBar': 'FooBar',
+		'fooBar:raw': 'foo:u:bar:raw',
 
 		// legacy
 		'(foo bar)': ':lp:foo:s:bar:rp:',
@@ -55,6 +56,7 @@ QUnit.test('encoded values should work with setAttribute', function() {
 			'DISABLED',
 			'fooBar',
 			'FooBar',
+			'fooBar:raw',
 
 			// legacy
 			'(foo bar)',
