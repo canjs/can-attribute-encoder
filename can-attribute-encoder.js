@@ -119,7 +119,9 @@ encoder.encode = function(name) {
 			// - {fooBar}, (fooBar), {(fooBar)}
 			encoded = encoded.replace(regexes.camelCase, camelCaseToSpinalCase);
 			//!steal-remove-start
-			dev.warn("can-attribute-encoder: Found attribute with name: " + name + ". Converting to: " + encoded + '.');
+			if(process.env.NODE_ENV !== 'production') {
+				dev.warn("can-attribute-encoder: Found attribute with name: " + name + ". Converting to: " + encoded + '.');
+			}
 			//!steal-remove-end
 		}
 	}
