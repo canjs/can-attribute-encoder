@@ -42,7 +42,7 @@ function startsWith(allOfIt, startsWith) {
 }
 
 function endsWith(allOfIt, endsWith) {
-	return (allOfIt.length - allOfIt.indexOf(endsWith)) === endsWith.length;
+	return (allOfIt.length - allOfIt.lastIndexOf(endsWith)) === endsWith.length;
 }
 
 var regexes = {
@@ -170,7 +170,7 @@ encoder.decode = function(name) {
 	var decoded = name;
 
 	// decode uppercase characters in new bindings
-	if (!caseMattersAttributes[decoded] && decoded.match(regexes.uppercaseDelimiterThenChar)) {
+	if (!caseMattersAttributes[decoded] && regexes.uppercaseDelimiterThenChar.test(decoded)) {
 		if (
 			startsWith(decoded, 'on:') ||
 			endsWith(decoded, ':to') ||
