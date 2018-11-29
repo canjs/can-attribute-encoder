@@ -114,3 +114,9 @@ QUnit.test('should throw if can-namespace.encoder is already defined', function(
 		start();
 	});
 });
+
+QUnit.test('Attributes with letters after numbers should bound correctly #27', function() {
+	var encoded = encoder.encode('fooBar1Var:from');
+	QUnit.equal(encoded, 'foo:u:bar1:u:var:from', 'encoded fooBar1Var');
+	QUnit.equal(encoder.decode(encoded), 'fooBar1Var:from');
+});
