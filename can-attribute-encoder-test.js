@@ -16,6 +16,7 @@ QUnit.test('encoding / decoding', function() {
 		'fooBar:from': 'foo:u:bar:from',
 		'fooBar:bind': 'foo:u:bar:bind',*/
 		'goToHome:to': 'go:u:to:u:home:to',
+		'fooBar1Var:from': 'foo:u:bar1:u:var:from'
 		/*
 		// not bound
 		'DISABLED': 'DISABLED',
@@ -113,10 +114,4 @@ QUnit.test('should throw if can-namespace.encoder is already defined', function(
 		ok(errMsg.indexOf('can-attribute-encoder') >= 0, 'should throw an error about can-attribute-encoder');
 		start();
 	});
-});
-
-QUnit.test('Attributes with letters after numbers should bound correctly #27', function() {
-	var encoded = encoder.encode('fooBar1Var:from');
-	QUnit.equal(encoded, 'foo:u:bar1:u:var:from', 'encoded fooBar1Var');
-	QUnit.equal(encoder.decode(encoded), 'fooBar1Var:from');
 });
