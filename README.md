@@ -1,9 +1,11 @@
 # can-attribute-encoder
 
-[![Join the chat at https://gitter.im/canjs/canjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/canjs/canjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join our Slack](https://img.shields.io/badge/slack-join%20chat-611f69.svg)](https://www.bitovi.com/community/slack?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join our Discourse](https://img.shields.io/discourse/https/forums.bitovi.com/posts.svg)](https://forums.bitovi.com/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-attribute-encoder/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/can-attribute-encoder.svg)](https://www.npmjs.com/package/can-attribute-encoder)
 [![Travis build status](https://travis-ci.org/canjs/can-attribute-encoder.svg?branch=master)](https://travis-ci.org/canjs/can-attribute-encoder)
+[![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-attribute-encoder.svg)](https://greenkeeper.io/)
 
 Encode / decode attributes for DOM elements
 
@@ -22,4 +24,3 @@ The [contribution guide](https://github.com/canjs/can-attribute-encoder/blob/mas
 ## License
 
 [MIT](https://github.com/canjs/can-attribute-encoder/blob/master/LICENSE)
-
