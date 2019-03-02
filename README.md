@@ -5,8 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-attribute-encoder/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/can-attribute-encoder.svg)](https://www.npmjs.com/package/can-attribute-encoder)
 [![Travis build status](https://travis-ci.org/canjs/can-attribute-encoder.svg?branch=master)](https://travis-ci.org/canjs/can-attribute-encoder)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-attribute-encoder?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-attribute-encoder)
-[![Coverage status](https://coveralls.io/repos/github/canjs/can-attribute-encoder/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-attribute-encoder?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-attribute-encoder.svg)](https://greenkeeper.io/)
 
 Encode / decode attributes for DOM elements
