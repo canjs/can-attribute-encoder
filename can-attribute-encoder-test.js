@@ -3,7 +3,7 @@ var encoder = require('./can-attribute-encoder');
 var clone = require('steal-clone');
 var dev = require('can-log/dev/dev');
 
-QUnit.test('encoding / decoding', function() {
+QUnit.test('encoding / decoding', function(assert) {
 	var encoded,
 		encodings = {
 		// bound
@@ -38,12 +38,12 @@ QUnit.test('encoding / decoding', function() {
 	for (var key in encodings) {
 		encoded = encoder.encode(key);
 
-		QUnit.equal(encoded, encodings[key], 'encoding ' + key);
-		QUnit.equal(encoder.decode(encoded), key, 'decoding ' + encoded);
+		assert.equal(encoded, encodings[key], 'encoding ' + key);
+		assert.equal(encoder.decode(encoded), key, 'decoding ' + encoded);
 	}
 });
 
-QUnit.test('encoded values should work with setAttribute', function() {
+QUnit.test('encoded values should work with setAttribute', function(assert) {
 	var div = document.createElement('div'),
 		attributes = [
 			// bound
@@ -74,29 +74,29 @@ QUnit.test('encoded values should work with setAttribute', function() {
 	attributes.forEach(function(attr) {
 		try {
 			div.setAttribute(encoder.encode(attr), attr + 'val');
-			QUnit.ok(true, attr + ' worked');
+			assert.ok(true, attr + ' worked');
 		} catch(e) {
-			QUnit.ok(false, e);
+			assert.ok(false, e);
 		}
 	});
 });
 
-QUnit.test('should warn and convert camelCase props in old bindings', function() {
-	expect(2);
+QUnit.test('should warn and convert camelCase props in old bindings', function(assert) {
+	assert.expect(2);
 
 	var origWarn = dev.warn;
 	dev.warn = function(warning) {
-		QUnit.ok(warning.indexOf("Found attribute with name: {fooBar}. Converting to: {foo-bar}.") >= 0, 'correct warning given');
+		assert.ok(warning.indexOf("Found attribute with name: {fooBar}. Converting to: {foo-bar}.") >= 0, 'correct warning given');
 	};
 
 	var encoded = encoder.encode('{fooBar}');
-	QUnit.equal(encoded, ':lb:foo-bar:rb:', 'encoded correctly');
+	assert.equal(encoded, ':lb:foo-bar:rb:', 'encoded correctly');
 
 	dev.warn = origWarn;
 });
 
-QUnit.test('should throw if can-namespace.encoder is already defined', function() {
-	stop();
+QUnit.test('should throw if can-namespace.encoder is already defined', function(assert) {
+	var done = assert.async();
 	clone({
 		'can-namespace': {
 			default: {
@@ -108,12 +108,12 @@ QUnit.test('should throw if can-namespace.encoder is already defined', function(
 	})
 	.import('can-attribute-encoder')
 	.then(function() {
-		ok(false, 'should throw');
-		start();
+		assert.ok(false, 'should throw');
+		done();
 	})
 	.catch(function(err) {
 		var errMsg = err && err.message || err;
-		ok(errMsg.indexOf('can-attribute-encoder') >= 0, 'should throw an error about can-attribute-encoder');
-		start();
+		assert.ok(errMsg.indexOf('can-attribute-encoder') >= 0, 'should throw an error about can-attribute-encoder');
+		done();
 	});
 });
